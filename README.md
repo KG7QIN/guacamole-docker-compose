@@ -25,7 +25,7 @@ git clone https://github.com/KG7QIN/guacamole-docker-compose
 
 Instead of using the git clone command below.
 
-Once clones, run the prepare.sh command AND THEN regenerate-ca.sh command ***BEFORE** docker-compose up -d.
+Once cloned, run the prepare.sh command ***AND THEN*** regenerate-ca.sh command ***BEFORE** docker-compose up -d.
 
 ------
 
