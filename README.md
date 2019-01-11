@@ -20,7 +20,7 @@ Just make sure you also read the docker-compose.yml file for ports.  By default,
 Additionally, you should clone this repo with:
 
 <pre>
-git clone https://github.com/KG7QIN/guacamole-docker-compose 
+git clone https://github.com/KG7QIN/guacamole-docker-compose.git
 </pre>
 
 Instead of using the git clone command below.
