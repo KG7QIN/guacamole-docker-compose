@@ -1,6 +1,6 @@
 # Apache Guacamole with docker-compose and SSL certs using EasyRSA3
 
-This is a modified version of the original guacamole-docker-compose foked from the boschkundendienst/guacamole-docker-compose repository.
+This is a modified version of the original `guacamole-docker-compose` forked from the `boschkundendienst/guacamole-docker-compose` repository.
 
 Changes include:
 * Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates
@@ -25,7 +25,9 @@ git clone https://github.com/KG7QIN/guacamole-docker-compose.git
 
 Instead of using the git clone command below.
 
-Once cloned, run the prepare.sh command ***AND THEN*** regenerate-ca.sh command ***BEFORE*** docker-compose up -d.
+Once cloned, run the `prepare.sh` command ***AND THEN*** `regenerate-ca.sh` command ***BEFORE*** `docker-compose up -d`.
+
+Make sure you generate client certs and import the .p12 file into your browser before trying to connect.  Without a valid client cert ***YOU CANNOT CONNECT***  to the Apache Guacamole Docker instance you created.
 
 ------
 
