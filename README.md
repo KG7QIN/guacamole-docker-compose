@@ -3,8 +3,8 @@
 This is a modified version of the original guacamole-docker-compose foked from the boschkundendienst/guacamole-docker-compose repository.
 
 Changes include:
-Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates
-Addition of custom "branding" under guacaomle/extensions that change the login screen (eurisko.jar)
+* Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates
+* Addition of custom "branding" under guacaomle/extensions that change the login screen (eurisko.jar)
 
 regenerate-ca.sh will setup/reset the self-signed CA and needs to be run after the prep instruction below **BUT BEFORE STARTING THE DOCKER INSTANCE**.  This is crucial as it also generates the SSL cert used by NGINX for Apache Guacamole.
 
