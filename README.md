@@ -1,4 +1,34 @@
-# Guacamole with docker-compose
+# Guacamole with docker-compose and SSL certs using EasyRSA3
+
+This is a modified version of the original guacamoled-docker-compose foked from the boschkundendienst/guacamole-docker-compose repository.
+
+Changes include:
+Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates
+Addition of custom "branding" under guacaomle/extensions that change the login screen (eurisko.jar)
+
+regenerate-ca.sh will setup/reset the self-signed CA and needs to be run after the prep instruction below **BUT BEFORE STARTING THE DOCKER INSTANCE**.  This is crucial as it also generates the SSL cert used by NGINX for Apache Guacamole.
+
+regenerate-server.sh will regenerate the SSL server cert used by NGINX.
+
+generate-client.sh will generate the client certs and package them in .p12 format for import into your browser.  This includes the root CA cert as well.
+
+Please read the regenerate-ca.sh and regenerate-server.sh files, as they contain some variables that need to be set (FQDN/IP and SAN of server)
+
+Except where noted, the rest of this "README" is from the original author.
+
+Just make sure you also read the docker-compose.yml file for ports.  By default, this will use HTTPS on port 443 insead of the port listed below.
+Additionally, you should clone this repo with:
+
+<pre>
+git clone https://github.com/KG7QIN/guacamole-docker-compose 
+</pre>
+
+Instead of using the git clone command below.
+
+Once clones, run the prepare.sh command AND THEN regenerate-ca.sh command ***BEFORE** docker-compose up -d.
+
+------
+
 This is a small documentation how to run a fully working **Apache Guacamole (incubating)** instance with docker (docker-compose). The goal of this project is to make it easy to test Guacamole.
 
 ## About Guacamole
