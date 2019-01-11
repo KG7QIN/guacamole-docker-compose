@@ -1,6 +1,6 @@
-# Guacamole with docker-compose and SSL certs using EasyRSA3
+# Apache Guacamole with docker-compose and SSL certs using EasyRSA3
 
-This is a modified version of the original guacamoled-docker-compose foked from the boschkundendienst/guacamole-docker-compose repository.
+This is a modified version of the original guacamole-docker-compose foked from the boschkundendienst/guacamole-docker-compose repository.
 
 Changes include:
 Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates
