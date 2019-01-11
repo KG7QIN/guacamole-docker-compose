@@ -1,11 +1,35 @@
 ####################################################################################
 # docker-compose file for Apache Guacamole
 # created by PCFreak 2017-06-28
+# Modified by Stacy Olivas - 10/31/2018
+#
 #
 # Apache Guacamole is a clientless remote desktop gateway. It supports standard
 # protocols like VNC, RDP, and SSH. We call it clientless because no plugins or
 # client software are required. Thanks to HTML5, once Guacamole is installed on
 # a server, all you need to access your desktops is a web browser.
+####################################################################################
+#
+# *** INSTRUCTIONS FOR USE ***
+# To stop and delete all containers and networks:
+# docker-compose down
+#
+# To rebuild docker containers and start:
+# docker-compose up -d
+#
+# To rebuild docker containers and see all output/errors (ctlr-c will stop) (for debugging only!!!):
+# docker-compose up
+#
+# To restart docker containers:
+# docker-compose restart
+#
+# To stop docker containers (does not destroy them):
+# docker-compose stop
+#
+# To start docker containers:
+# docker-compose start
+#
+#
 ####################################################################################
 #
 # What does this file do?
@@ -76,9 +100,11 @@
 # 0.1                2017-06-28        initial release
 # 0.2                2017-10-09        minor fixes + internal GIT push
 # 0.3                2017-10-09        minor fixes + public GIT push
+# 0.4                2018-10-31        Added extensions for interface branding
+#                                      Updated SSL to not generate at each run
 ####################################################################################
 
-version: '2.0'
+version: '3.4'
 
 # networks
 # create a network 'guacnetwork_compose' in mode 'bridged'
@@ -104,7 +130,7 @@ services:
     environment:
       PGDATA: /var/lib/postgresql/data/guacamole
       POSTGRES_DB: guacamole_db
-      POSTGRES_PASSWORD: ChooseYourOwnPasswordHere1234
+      POSTGRES_PASSWORD: Flood-Wire-Solemn-Hole-Current-2
       POSTGRES_USER: guacamole_user
     image: postgres
     networks:
@@ -120,12 +146,15 @@ services:
     depends_on:
     - guacd
     - postgres
+    volumes:
+    - ./guacamole:/etc/guacamole
     environment:
       GUACD_HOSTNAME: guacd
       POSTGRES_DATABASE: guacamole_db
       POSTGRES_HOSTNAME: postgres
-      POSTGRES_PASSWORD: ChooseYourOwnPasswordHere1234
+      POSTGRES_PASSWORD: Flood-Wire-Solemn-Hole-Current-2
       POSTGRES_USER: guacamole_user
+      GUACAMOLE_HOME: /etc/guacamole
     image: guacamole/guacamole
     links:
     - guacd
@@ -138,8 +167,6 @@ services:
     - 8080/tcp
     restart: always
 
-########### optional ##############
-####
   # nginx
   nginx:
    container_name: nginx_guacamole_compose
@@ -148,9 +175,10 @@ services:
    volumes:
    - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
    - ./nginx/mysite.template:/etc/nginx/conf.d/mysite.template
-   - ./nginx/ssl:/etc/nginx/ssl
+#   - ./nginx/ssl:/etc/nginx/ssl
+   - ./easyrsa3/pki:/etc/nginx/ssl 
    ports:
-   - 8443:443
+   - 443:443
 ##   environment:
 ##   - NGINX_HOST=nginx
 ##   - NGINX_PORT=443
@@ -158,9 +186,11 @@ services:
    - guacamole
    networks:
      guacnetwork_compose:
-   # install openssl, create self-signed certificate and run nginx
-   command: /bin/bash -c "apt-get -y update && apt-get -y install openssl && openssl req -nodes -newkey rsa:2048 -new -x509 -keyout /etc/nginx/ssl/self-ssl.key -out /etc/nginx/ssl/self.cert -subj '/C=DE/ST=BY/L=Hintertupfing/O=Dorfwirt/OU=Theke/CN=www.createyourown.domain/emailAddress=docker@createyourown.domain' && cp -f -s /etc/nginx/conf.d/mysite.template /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
+   # install openssl, copy files config files over for nginx, and run nginx
+   command: /bin/bash -c "apt-get -y update && apt-get -y install openssl && cp -f -s /etc/nginx/conf.d/mysite.template /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"
 # nginx-debug-mode
-#   command: /bin/bash -c "apt-get -y update && apt-get -y install openssl && openssl req -nodes -newkey rsa:2048 -new -x509 -keyout /etc/nginx/ssl/self-ssl.key -out /etc/nginx/ssl/self.cert -subj '/C=DE/ST=BY/L=Munich/O=DockerContainer/OU=nginx/CN=www.example.com/emailAddress=docker@somedomain.com' && cp -f -s /etc/nginx/conf.d/mysite.template /etc/nginx/conf.d/default.conf && nginx-debug -g 'daemon off;'"
-###################################
-####################################################################################
+# command: /bin/bash -c "apt-get -y update && apt-get -y install openssl && cp -f -s /etc/nginx/conf.d/mysite.template /etc/nginx/conf.d/default.conf && nginx-debug -g 'daemon off;'"
+#
+
+
+
