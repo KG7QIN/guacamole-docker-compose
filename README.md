@@ -6,11 +6,11 @@ Changes include:
 * Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates
 * Addition of custom "branding" under guacaomle/extensions that change the login screen (eurisko.jar)
 
-regenerate-ca.sh will setup/reset the self-signed CA and needs to be run after the prep instruction below **BUT BEFORE STARTING THE DOCKER INSTANCE**.  This is crucial as it also generates the SSL cert used by NGINX for Apache Guacamole.
+`regenerate-ca.sh` will setup/reset the self-signed CA and needs to be run after the prep instruction below **BUT BEFORE STARTING THE DOCKER INSTANCE**.  This is crucial as it also generates the SSL cert used by NGINX for Apache Guacamole.
 
-regenerate-server.sh will regenerate the SSL server cert used by NGINX.
+`regenerate-server.sh` will regenerate the SSL server cert used by NGINX.
 
-generate-client.sh will generate the client certs and package them in .p12 format for import into your browser.  This includes the root CA cert as well.
+`generate-client.sh` will generate the client certs and package them in .p12 format for import into your browser.  This includes the root CA cert as well.
 
 Please read the regenerate-ca.sh and regenerate-server.sh files, as they contain some variables that need to be set (FQDN/IP and SAN of server)
 
