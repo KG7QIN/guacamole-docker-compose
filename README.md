@@ -33,6 +33,8 @@ Once cloned, run the `prepare.sh` command ***AND THEN*** `regenerate-ca.sh` comm
 
 Make sure you generate client certs and import the .p12 file into your browser before trying to connect.  Without a valid client cert ***YOU CANNOT CONNECT***  to the Apache Guacamole Docker instance you created.
 
+EasyRSA3 copied form the OpenVPN repo at https://github.com/OpenVPN/easy-rsa/tree/master/easyrsa3
+
 ------
 
 This is a small documentation how to run a fully working **Apache Guacamole (incubating)** instance with docker (docker-compose). The goal of this project is to make it easy to test Guacamole.
