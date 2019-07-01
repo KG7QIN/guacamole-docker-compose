@@ -12,7 +12,7 @@ Changes include:
 
 `generate-client.sh` will generate the client certs and package them in .p12 format for import into your browser.  This includes the root CA cert as well.
 
-Please read the regenerate-ca.sh and regenerate-server.sh files, as they contain some variables that need to be set (FQDN/IP and SAN of server)
+***_Please read the regenerate-ca.sh and regenerate-server.sh files, as they contain some variables that need to be set (FQDN/IP and SAN of server)_***
 
 Except where noted, the rest of this "README" is from the original author.
 
