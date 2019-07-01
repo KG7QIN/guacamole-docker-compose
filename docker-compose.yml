@@ -1,7 +1,7 @@
 ####################################################################################
 # docker-compose file for Apache Guacamole
 # created by PCFreak 2017-06-28
-# Modified by Stacy Olivas - 10/31/2018
+# Modified by Stacy Olivas - 06/30/2019
 #
 #
 # Apache Guacamole is a clientless remote desktop gateway. It supports standard
@@ -102,6 +102,8 @@
 # 0.3                2017-10-09        minor fixes + public GIT push
 # 0.4                2018-10-31        Added extensions for interface branding
 #                                      Updated SSL to not generate at each run
+# 0.5		     2019-06-30	       Updated docker file to only use Apache Guacamole
+#                                      0.9.14.  Fixed docker file formatting.
 ####################################################################################
 
 version: '3.4'
@@ -117,7 +119,7 @@ services:
   # guacd
   guacd:
     container_name: guacd_compose
-    image: guacamole/guacd
+    image: guacamole/guacd:0.9.14
     networks:
       guacnetwork_compose:
     restart: always
@@ -143,6 +145,7 @@ services:
   # guacamole
   guacamole:
     container_name: guacamole_compose
+    image: guacamole/guacamole:0.9.14
     depends_on:
     - guacd
     - postgres
@@ -155,7 +158,6 @@ services:
       POSTGRES_PASSWORD: Flood-Wire-Solemn-Hole-Current-2
       POSTGRES_USER: guacamole_user
       GUACAMOLE_HOME: /etc/guacamole
-    image: guacamole/guacamole
     links:
     - guacd
     networks:
