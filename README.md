@@ -1,10 +1,14 @@
-# Apache Guacamole with docker-compose and client SSL certs using EasyRSA3
+# Secure Apache Guacamole with docker-compose and client SSL certs using EasyRSA3
 
 This is a modified version of the original `guacamole-docker-compose` forked from the `boschkundendienst/guacamole-docker-compose` repository.
 
 Changes include:
-* Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates
+* Inclusion of EasyRSA3 with supporting scripts for generating a self-signed CA, server, and client certificates.
 * Addition of custom "branding" under guacaomle/extensions that change the login screen (eurisko.jar)
+
+Client certificates are generated with the included copy of EasyRSA3 using OpenSSL.  When connecting to the webserver, a client **MUST** present a valid certificate that has been previously generated wtih the server's CA.  Failure to present a valid client certificate results in an error preventing the client from accessing the login page.
+
+This provides an additional layer of security to the Apache Guacamole gateway instance by only allowing those with a valid client cert to connect.  This is where the _**secure**_ comes from in the name above.
 
 `regenerate-ca.sh` will setup/reset the self-signed CA and needs to be run after the prep instruction below **BUT BEFORE STARTING THE DOCKER INSTANCE**.  This is crucial as it also generates the SSL cert used by NGINX for Apache Guacamole.
 
@@ -12,7 +16,7 @@ Changes include:
 
 `generate-client.sh` will generate the client certs and package them in .p12 format for import into your browser.  This includes the root CA cert as well.
 
-***_Please read the regenerate-ca.sh and regenerate-server.sh files, as they contain some variables that need to be set (FQDN/IP and SAN of server)_***
+**_Please read the regenerate-ca.sh and regenerate-server.sh files, as they contain some variables that need to be set (FQDN/IP and SAN of server)_**
 
 Except where noted, the rest of this "README" is from the original author.
 
@@ -20,7 +24,7 @@ Just make sure you also read the docker-compose.yml file for ports.  By default,
 Additionally, you should clone this repo with:
 
 <pre>
-git clone https://github.com/KG7QIN/guacamole-docker-compose.git
+git clone https://github.com/KG7QIN/secure-guacamole-docker-compose.git
 </pre>
 
 Instead of using the git clone command below.
