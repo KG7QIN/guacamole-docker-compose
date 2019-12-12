@@ -1,4 +1,5 @@
-# Secure Apache Guacamole (v0.9.14) with docker-compose and client SSL certs using EasyRSA3
+# Secure Apache Guacamole (v0.9.14) 
+## With client SSL certs using EasyRSA3 and docker-compose
 
 This is a modified version of the original `guacamole-docker-compose` forked from the `boschkundendienst/guacamole-docker-compose` repository.
 
