@@ -1,4 +1,4 @@
-# Secure Apache Guacamole with docker-compose and client SSL certs using EasyRSA3
+# Secure Apache Guacamole (v0.9.14) with docker-compose and client SSL certs using EasyRSA3
 
 This is a modified version of the original `guacamole-docker-compose` forked from the `boschkundendienst/guacamole-docker-compose` repository.
 
@@ -51,13 +51,13 @@ You need a working **docker** installation and **docker-compose** running on you
 Clone the GIT repository and start guacamole:
 
 ~~~bash
-git clone "https://github.com/boschkundendienst/guacamole-docker-compose.git"
+git clone "git clone https://github.com/KG7QIN/secure-guacamole-docker-compose.git"   <--- updated to this repo
 cd guacamole-docker-compose
 ./prepare.sh
 docker-compose up -d
 ~~~
 
-Your guacamole server should now be available at `https://ip of your server:8443/`. The default username is `guacadmin` with password `guacadmin`.
+Your guacamole server should now be available at `https://ip of your server:443/`. The default username is `guacadmin` with password `guacadmin`.
 
 ## Details
 To understand some details let's take a closer look at parts of the `docker-compose.yml` file:
