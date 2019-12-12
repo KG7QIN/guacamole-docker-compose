@@ -24,10 +24,13 @@ Just make sure you also read the docker-compose.yml file for ports.  By default,
 Additionally, you should clone this repo with:
 
 <pre>
-git clone https://github.com/KG7QIN/secure-guacamole-docker-compose.git
+cd /opt
+git clone https://github.com/KG7QIN/guacamole-docker-compose.git
 </pre>
 
 Instead of using the git clone command below.
+
+**_NOTE: The EasyPKI scripts are setup with harded coded paths to use /opt/guacamole-docker-compose for their functions.  Changing this to another directory will require you to update the regenerate-ca.sh, regenerate-server.sh, generate-client.sh and any variables in scripts under the easyrsa3 directory_**
 
 Once cloned, run the `prepare.sh` command ***AND THEN*** `regenerate-ca.sh` command ***BEFORE*** `docker-compose up -d`.
 
@@ -51,7 +54,7 @@ You need a working **docker** installation and **docker-compose** running on you
 Clone the GIT repository and start guacamole:
 
 ~~~bash
-git clone "git clone https://github.com/KG7QIN/secure-guacamole-docker-compose.git"   <--- updated to this repo
+git clone "git clone https://github.com/KG7QIN/guacamole-docker-compose.git"   <--- updated to this repo
 cd guacamole-docker-compose
 ./prepare.sh
 docker-compose up -d
