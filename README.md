@@ -1,5 +1,8 @@
-# Secure Apache Guacamole (v0.9.14) 
+# Secure Apache Guacamole (v1.5.5) 
+
 **With client SSL certs using EasyRSA3 and docker-compose**
+
+**Note:  Updated 20 July 2024 for Apache Guacamole v1.5.5**
 
 This is a modified version of the original `guacamole-docker-compose` forked from the `boschkundendienst/guacamole-docker-compose` repository.
 
