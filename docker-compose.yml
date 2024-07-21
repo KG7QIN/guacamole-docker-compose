@@ -105,6 +105,7 @@
 #                                      0.9.14.  Fixed docker file formatting.
 # 0.6                2019-12-11        Changed default password used in file to something
 #                                      else with a note to change it
+# 1.5.5              2024-07020        Updated to work with Apache Guacamole 1.5.5
 ####################################################################################
 
 version: '3.4'
@@ -120,7 +121,7 @@ services:
   # guacd
   guacd:
     container_name: guacd_compose
-    image: guacamole/guacd:0.9.14
+    image: guacamole/guacd:1.5.5
     networks:
       guacnetwork_compose:
     restart: always
@@ -147,7 +148,7 @@ services:
   # guacamole
   guacamole:
     container_name: guacamole_compose
-    image: guacamole/guacamole:0.9.14
+    image: guacamole/guacamole:1.5.5
     depends_on:
     - guacd
     - postgres
